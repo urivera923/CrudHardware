@@ -1,0 +1,100 @@
+extends layouts/inicio
+
+block content
+    .container
+      .row 
+        .col.my-2
+          h1.text-center.mt-4.mb-4.fw-bold Formulario Hardware
+
+          hr
+    .container
+      .row.d-flex.justify-content-center
+        .col-6
+          form.shadow-lg.p-3.mb-5.bg-dark.rounded.text-white.form(action="/create"  method="POST")
+            fieldset
+              legend.text-center.fw-bolder.my-3 Datos del pedido
+              hr.bg-light
+              .row.g-3.my-2
+                .col-md-6
+                  .mb-3
+                    label.form-label(for="hardware") Hardware
+                    input.form-control#hardware(type="text" aria-describedby="nombreHelp" name="hardware" placeholder="Hardware" )
+                    .form-text.text-light#hardwareHelp Por favor ingresa la información completa.
+                .col-md-6
+                  .mb-3
+                    label.form-label(for="nombre") Nombre
+                    input.form-control#nombre(type="text" aria-describedby="nombreHelp" name="nombre" placeholder="Nombre completo" )
+                    .form-text.text-light#nombreHelp Por favor ingresa un nombre completo.
+                .col-md-4    
+                  .mb-3
+                    label.form-label(for="modelo") Modelo
+                    input.form-control#modelo(type="text" aria-describedby="modeloHelp" name="modelo" placeholder="Modelo" )
+                    .form-text.text-light#modeloHelp Por favor ingresa un modelo válido.
+                .col-md-4
+                  .mb-3
+                    label.form-label(for="marca") Marca
+                    input.form-control#marca(type="text" aria-describedby="marcaHelp" name="marca" placeholder="Marca" )
+                    .form-text.text-light#marcaHelp Por favor ingresa una marca válida.
+                .col-md-4
+                  .mb-3
+                    label.form-label(for="lanzamiento") Año de lanzamiento
+                    input.form-control#lanzamiento(type="date" aria-describedby="lanzamientoHelp" name="lanzamiento" placeholder="lanzamiento a 10 digitos" )
+                    .form-text.text-light#lanzamientoHelp Por favor ingresa una fecha de lanzamiento válido.
+              .mb-3
+                label.form-label(for="descripcion") Descripción
+                textarea.form-control#descripcion(type="textarea" aria-describedby="descripcionHelp" name="descripcion" placeholder="Descripcion" )
+                .form-text.text-light#descripcionHelp Por favor ingresa una descripción válida.
+              .mb-3
+                label.form-label(for="img") Link de imagen
+                input.form-control.form-control-sm#img(type="text" name="img" aria-describedby="imgHelp" placeholder="imagen" accept="image/*")
+                .form-text.text-light#imgHelp Por favor ingresa una fecha de imagen válido.
+              .d-flex.justify-content-end
+                button.btn.btn-primary#btnSave(type="submit" onclick='validar()') Guardar <i class="fa-solid fa-cloud-arrow-down"></i>
+    .container 
+      .row 
+        .col 
+          table.table.table-dark.table-striped.table-hover.table-bordered.table-sm.table-responsive-sm.text-center
+            thead
+              tr
+                th(scope="col") Hardware
+                th(scope="col") Nombre
+                th(scope="col") Modelo
+                th(scope="col") Marca
+                th(scope="col") Año de lanzamiento
+                th(scope="col") Descripción
+                th(scope="col") Imagen
+                th(scope="col") Editar
+                th(scope="col") Eliminar
+            tbody
+              if ok
+                each hardware in productos
+                  tr
+                    td.d-none=hardware._id
+                    td=hardware.hardware
+                    td=hardware.nombre
+                    td=hardware.modelo
+                    td=hardware.marca
+                    td=hardware.lanzamiento
+                    td=hardware.descripcion
+                    td
+                      img.img-fluid.rounded.mx-auto.d-block( `height: 40px;` src=`${hardware.img}`)
+                    td 
+                      button.btn.btn-info.me-3.text-white#btnEditar Editar <i class="fa-solid fa-pen-to-square"></i>
+                    td
+                      a.btn.btn-danger(href=`/delete/${hardware._id}` onclick='gotoBlog()') Eliminar <i class="fa-solid fa-trash-can"></i>
+                      
+                
+
+              else 
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td Ingresa un contacto primero
+                td 
+                  button.btn.btn-info.me-3.text-white Editar <i class="fa-solid fa-pen-to-square"></i>
+                td
+                  a.btn.btn-danger Eliminar <i class="fa-solid fa-trash-can"></i>
+    include ../include/modal.pug

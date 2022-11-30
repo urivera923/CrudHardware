@@ -1,0 +1,40 @@
+#modalContacto.modal(tabindex="-1" aria-labelledby="modalContacto" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header.bg-dark.txt-center
+        h5(class="modal-title text-center" id="exampleModalLabel") Editar Información
+        button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
+      .modal-body.bg-dark
+        form(action="/update" method="POST")
+          input(name="edit_id" id="edit_id" type="text" hidden)
+          .row.g-3
+            .col-md-6
+              .mb-3
+                label.form-label(for="hardware") Hardware
+                input.form-control#edit_hardware(type="text" aria-describedby="nombreHelp" name="hardware" placeholder="Hardware" )
+                .form-text.text-light#hardwareHelp Por favor ingresa la información completa.
+            .col-md-6
+              .mb-3
+                label.form-label(for="nombre") Nombre
+                input.form-control#edit_nombre(type="text" aria-describedby="nombreHelp" name="nombre" placeholder="Nombre completo" )
+                .form-text.text-light#nombreHelp Por favor ingresa un nombre completo.
+            .col-md-6   
+              .mb-3
+                label.form-label(for="modelo") Modelo
+                input.form-control#edit_modelo(type="text" aria-describedby="modeloHelp" name="modelo" placeholder="Modelo" )
+                .form-text.text-light#modeloHelp Por favor ingresa un modelo válido.
+            .col-md-6
+              .mb-3
+                label.form-label(for="marca") Marca
+                input.form-control#edit_marca(type="text" aria-describedby="marcaHelp" name="marca" placeholder="Marca" )
+                .form-text.text-light#marcaHelp Por favor ingresa una marca válida.
+          .mb-3
+            label.form-label(for="lanzamiento") Año de lanzamiento
+            input.form-control#edit_lanzamiento(type="text" aria-describedby="lanzamientoHelp" name="lanzamiento" placeholder="Fecha" )
+            .form-text.text-light#lanzamientoHelp Por favor ingresa una fecha de lanzamiento válido.
+          .mb-3
+            label.form-label(for="descripcion") Descripción
+            textarea.form-control#edit_descripcion(type="textarea" aria-describedby="descripcionHelp" name="descripcion" placeholder="Descripcion" )
+            .form-text.text-light#descripcionHelp Por favor ingresa una descripción válida.
+          .d-grid
+            button(type="submit" class="btn btn-primary") Actualizar <i class="fa-solid fa-arrows-rotate"></i>

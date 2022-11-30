@@ -1,5 +1,4 @@
 const Hardware = require("../models/Hardware");
-// const multer = require('multer')
 
 const readHardware = async (_, res) => {
     try {
